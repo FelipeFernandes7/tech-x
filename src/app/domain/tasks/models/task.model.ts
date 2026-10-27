@@ -15,6 +15,19 @@ export interface Task {
   priority: TaskPriority;
   dueDate: string;
   completed: boolean;
+  userId?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ApiTask {
+  id: string;
+  title: string;
+  description: string | null;
+  completed: boolean;
+  userId: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export type TaskFilter = 'todas' | 'pendentes' | 'concluidas';
