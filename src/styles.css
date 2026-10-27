@@ -17,6 +17,19 @@
 body { min-width: 360px; min-height: 100vh; margin: 0; }
 button, input, textarea, select { font: inherit; }
 button { cursor: pointer; }
+
+[data-sonner-toaster] { font-family: inherit !important; }
+[data-sonner-toast] {
+  border: 1px solid #e4eae4 !important;
+  border-radius: 10px !important;
+  color: #25342a !important;
+  background: #fff !important;
+  box-shadow: 0 14px 40px rgba(28, 41, 32, .14) !important;
+  font-size: 13px !important;
+}
+[data-sonner-toast][data-type='success'] {
+  border-left: 4px solid #216a48 !important;
+}
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
   outline: 3px solid #91d6ad;
   outline-offset: 3px;
