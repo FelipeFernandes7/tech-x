@@ -1,4 +1,4 @@
-# TechX Todo List — Frontend
+# TechX Todo List - Frontend
 
 Aplicação web responsiva para cadastro, autenticação e gerenciamento de tarefas. O frontend foi desenvolvido com Angular, integra-se ao backend NestJS por HTTP com cookies e oferece renderização SSR com hidratação.
 
