@@ -37,10 +37,10 @@
       <div class="profile">
         <div class="avatar" aria-hidden="true">TX</div>
         <div class="profile-info">
-          <span class="profile-name">Time TechX</span>
+          <span class="profile-name">{{ user()?.name || 'Usuário TechX' }}</span>
           <span class="profile-role">Workspace pessoal</span>
         </div>
-        <span class="profile-menu" aria-hidden="true">•••</span>
+        <button class="profile-menu" type="button" aria-label="Sair" title="Sair" (click)="logout()">Sair</button>
       </div>
     </div>
   </aside>
@@ -229,14 +229,14 @@
       <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
         <label class="form-field">
           <span>Nome da tarefa <span class="required-mark">*</span></span>
-          <input autofocus type="text" formControlName="title" placeholder="Ex.: Preparar apresentação da sprint" maxlength="80" />
+          <input autofocus type="text" formControlName="title" placeholder="Ex.: Preparar apresentação da sprint" maxlength="200" />
           @if (taskForm.controls.title.touched && taskForm.controls.title.invalid) {
             <small class="field-error">Informe um nome com até 80 caracteres.</small>
           }
         </label>
         <label class="form-field">
           <span>Descrição <span class="optional-label">OPCIONAL</span></span>
-          <textarea formControlName="description" rows="3" placeholder="Adicione detalhes para não esquecer..." maxlength="240"></textarea>
+          <textarea formControlName="description" rows="3" placeholder="Adicione detalhes para não esquecer..." maxlength="5000"></textarea>
         </label>
         <div class="form-fields-row">
           <label class="form-field">
