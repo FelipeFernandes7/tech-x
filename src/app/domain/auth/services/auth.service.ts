@@ -45,25 +45,28 @@ export class AuthService {
 
   ensureInitialized(): Promise<AuthUser | null> {
     if (this.initialization) return this.initialization;
-    this.initialization = firstValueFrom(
+
+    const request: Promise<AuthUser | null> = firstValueFrom(
       this.http.get<AuthUser>(`${API_BASE_URL}/auth/me`),
-    ).then((user) => {
-      this.user.set(user);
-      this.isInitialized.set(true);
-      return user;
-    }).catch(() => {
-      this.user.set(null);
-      this.isInitialized.set(true);
-      return null;
-    });
-    return this.initialization;
+    )
+      .catch(() => null)
+      .then((user) => {
+        if (this.initialization !== request) return this.user();
+        this.user.set(user);
+        this.isInitialized.set(true);
+        return user;
+      });
+
+    this.initialization = request;
+    return request;
   }
 
   async completeAuth(response: { user: AuthUser }): Promise<void> {
     this.user.set(response.user);
     this.isInitialized.set(true);
-  }
 
+    this.initialization = Promise.resolve(response.user);
+  }
   async clearSession(): Promise<void> {
     this.user.set(null);
     this.initialization = null;
